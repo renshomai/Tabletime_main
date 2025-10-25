@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservation History</title>
+
+  <!-- Fonts & Bootstrap -->
+  <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&family=Alexandria&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="style-reservation-history.css" />
+</head>
+<body>
+  <div class="container">
+    <h2 class="title">Reservation History</h2>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search" />
+        <span class="calendar-icon">📅</span>
+      </div>
+    </div>
+
+    <!-- Reservation Cards -->
+    <div class="history-card completed" onclick="window.location.href='reservation-details.html'">
+      <div class="status-bar green"></div>
+      <div class="card-content">
+        <p class="date">5 October 2025</p>
+        <p class="info">Position: 3 <span class="status-text green">Completed</span></p>
+      </div>
+    </div>
+
+    <div class="history-card cancelled" onclick="viewDetails('7 October 2025', 9, 'Cancelled')">
+      <div class="status-bar red"></div>
+      <div class="card-content">
+        <p class="date">7 October 2025</p>
+        <p class="info">Position: 9 <span class="status-text red">Cancelled</span></p>
+      </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="button-group">
+      <button class="btn-queue" onclick="window.location.href='queue-status.html'">Back</button>
+    </div>
+
+    <!-- Bottom Logo -->
+    <div class="bottom-logo">
+      <img src="tabletime.png" alt="TableTime Logo" class="logo">
+    </div>
+  </div>
+
+  <script>
+    function viewDetails(date, pos, status) {
+      alert(`Reservation on ${date}\nPosition: ${pos}\nStatus: ${status}`);
+    }
+  </script>
+</body>
+</html>

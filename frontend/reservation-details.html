@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservation Details</title>
+
+  <!-- Fonts & Bootstrap -->
+  <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&family=Alexandria&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="style-reservation-details.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="details-box">
+      <h2 class="title">Reservation Details</h2>
+
+      <!-- Card-style details section -->
+      <div class="details-card">
+        <div class="details-box-inner">
+          <div class="detail-row">
+            <p class="label">Date</p>
+            <p class="value">5 October 2025</p>
+          </div>
+
+          <div class="detail-row">
+            <p class="label">Place in queue</p>
+            <p class="value">3</p>
+          </div>
+
+          <div class="detail-row">
+            <p class="label">Total pax</p>
+            <p class="value">15</p>
+          </div>
+
+          <div class="detail-row">
+            <p class="label">Status</p>
+            <p class="value status-green">Completed</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-queue" onclick="window.location.href='reservation-history.html'">Back</button>
+    </div>
+
+    <div class="bottom-logo">
+      <img src="tabletime.png" alt="TableTime Logo" class="logo">
+    </div>
+  </div>
+</body>
+</html>

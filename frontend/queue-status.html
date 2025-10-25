@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Queue Status</title>
+
+  <!-- Fonts & Bootstrap -->
+  <link href="https://fonts.googleapis.com/css2?family=Bakbak+One&family=Alexandria&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="style-queue-status.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Light cream box for the main content -->
+    <div class="status-box">
+      <h2 class="title">Queue Status</h2>
+
+      <!-- Join Queue Form -->
+<div class="join-queue mb-4">
+  <h4>Join the Queue</h4>
+  <input type="text" id="name" placeholder="Your Name" class="form-control mb-2" />
+  <input type="text" id="phone" placeholder="Phone Number" class="form-control mb-2" />
+  <input type="number" id="partySize" placeholder="Party Size" class="form-control mb-2" />
+  <button class="btn btn-primary w-100" onclick="joinQueue()">Join Queue</button>
+</div>
+
+<!-- QR Code Display -->
+<div id="qrSection" style="display:none; text-align:center; margin-top:20px;">
+  <h5>Your Ticket</h5>
+  <img id="qrImage" alt="QR Ticket" style="width:150px; height:150px; margin-top:10px;" />
+</div>
+
+
+      <!-- Queue Info -->
+      <div class="queue-card">
+        <p class="subtitle">Your place in the queue:</p>
+        <p class="position" id="queuePosition">...</p>
+        <p class="wait"><strong>Estimated wait:</strong> <span id="waitTime">...</span></p>
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-group">
+        
+        <button class="btn-status" onclick="window.location.href='reservation-history.html'">View History</button>
+        <button class="btn-cancel" onclick="cancelReservation()">Cancel Reservation</button>
+      </div>
+    </div>
+
+    <!-- Bottom Logo -->
+    <div class="bottom-logo">
+      <img src="tabletime.png" alt="TableTime Logo" class="logo">
+    </div>
+  </div>
+
+  <script>
+  // Called when the user clicks "Join Queue"
+  function joinQueue() {
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const partySize = document.getElementById('partySize').value.trim();
+
+    if (!name || !phone || !partySize) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    fetch('http://localhost:4000/api/join-queue', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, phone, partySize })
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log('Ticket ID:', data.ticketId);
+
+        // Show QR Code
+        document.getElementById('qrImage').src = data.qrCodeUrl;
+        document.getElementById('qrSection').style.display = 'block';
+
+        // Display the user's queue info
+        document.getElementById('queuePosition').textContent = "Ticket " + data.ticketId;
+        document.getElementById('waitTime').textContent = "Please wait to be called";
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Failed to join queue. Make sure the backend is running.");
+      });
+  }
+
+  function showQR() {
+    const qrSection = document.getElementById('qrSection');
+    if (qrSection.style.display === 'none') {
+      alert("You haven't joined the queue yet.");
+    } else {
+      qrSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  function cancelReservation() {
+    const confirmCancel = confirm("Are you sure you want to cancel your reservation?");
+    if (confirmCancel) {
+      alert("Your reservation has been canceled (you could later connect this to a backend endpoint).");
+    }
+  }
+</script>
+
+</body>
+</html>

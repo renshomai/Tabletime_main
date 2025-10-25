@@ -1,0 +1,22 @@
+# OS/Editor
+.DS_Store
+.vscode/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Environment & secrets
+.env
+backend/.env
+frontend/.env
+
+# SQLite
+db.sqlite
+backend/db.sqlite
+*.sqlite
+*.sqlite-journal
+
+# Build/output
+dist/
+build/

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join Queue</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Join the Queue</h2>
+    <form id="joinForm">
+      <input type="text" id="name" placeholder="Your name" required /><br>
+      <input type="text" id="phone" placeholder="Phone number" required /><br>
+      <input type="number" id="partySize" placeholder="Party size" required /><br>
+      <button type="submit">Join</button>
+    </form>
+
+    <div id="result" style="margin-top:20px; display:none;">
+      <p>Your ticket ID: <span id="ticketId"></span></p>
+      <img id="qrImage" alt="QR Code" style="max-width:200px;">
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('joinForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const partySize = parseInt(document.getElementById('partySize').value);
+
+      try {
+        const res = await fetch('http://localhost:5000/api/join-queue', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone, partySize })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          document.getElementById('result').style.display = 'block';
+          document.getElementById('ticketId').textContent = data.ticketId;
+          document.getElementById('qrImage').src = data.qrCodeUrl;
+        } else {
+          alert(data.error || 'Failed to join queue.');
+        }
+      } catch (err) {
+        alert('Failed to join queue. Make sure the backend is running.');
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

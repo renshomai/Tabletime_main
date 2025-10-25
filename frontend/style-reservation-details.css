@@ -1,0 +1,174 @@
+body {
+  font-family: 'Alexandria', sans-serif;
+  background-color: #ffffff; /* Page background */
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* ===== Main Container ===== */
+.container {
+  width: 100%;
+  background-color: #fff8f0; /* Light cream content box */
+  border-radius: 20px;
+  padding: 35px 25px;
+  margin: 40px auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+/* ===== Title ===== */
+.title {
+  font-family: 'Bakbak One', cursive;
+  font-size: 2rem;
+  color: #111;
+  text-align: center;
+  margin-bottom: 25px;
+  word-wrap: break-word;
+}
+
+/* ===== Details Card ===== */
+.details-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  margin-bottom: 25px;
+  box-sizing: border-box;
+}
+
+.details-box-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Each row behaves responsively */
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* allows wrapping on narrow screens */
+}
+
+/* Text elements */
+.label {
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+  flex: 1;
+  min-width: 40%;
+}
+
+.value {
+  font-size: 1rem;
+  text-align: right;
+  color: #555;
+  flex: 1;
+  min-width: 40%;
+  word-break: break-word;
+}
+
+.status-green {
+  color: #00b894;
+  font-weight: 700;
+}
+
+/* ===== Button ===== */
+.btn-queue {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  background: linear-gradient(180deg,#00b8e6 0%,#009dc7 100%);
+  margin-top: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-queue:hover {
+  filter: brightness(0.95);
+  transform: translateY(1px);
+}
+
+/* ===== Logo Section ===== */
+.bottom-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.logo {
+  width: 230px;
+  height: auto;
+  border-radius: 10px;
+  opacity: 0.95;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* ===== Responsive Behavior ===== */
+@media (max-width: 768px) {
+  .container {
+    padding: 28px 20px;
+    margin: 25px auto;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .label, .value {
+    font-size: 0.95rem;
+  }
+
+  .logo {
+    width: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 94%;
+    padding: 24px 18px;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .label, .value {
+    text-align: left;
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .btn-queue {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .logo {
+    width: 120px;
+  }
+}
